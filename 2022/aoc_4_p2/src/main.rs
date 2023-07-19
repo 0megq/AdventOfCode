@@ -19,16 +19,17 @@ fn main() {
 
 // change algorithm here to check for all overlapping pairs
 fn ranges_overlapping(a: Vec<&str>, b: Vec<&str>) -> bool {
-    let top_a = a[0].parse::<usize>().unwrap();
-    let bottom_a = a[1].parse::<usize>().unwrap();
-    let top_b = b[0].parse::<usize>().unwrap();
-    let bottom_b = b[1].parse::<usize>().unwrap();
+    let bottom_a = a[0].parse::<usize>().unwrap();
+    let top_a = a[1].parse::<usize>().unwrap();
+    let bottom_b = b[0].parse::<usize>().unwrap();
+    let top_b = b[1].parse::<usize>().unwrap();
 
-    if top_a >= top_b && bottom_a <= bottom_b {
-        return true;
-    } else if top_b >= top_a && bottom_b <= bottom_a {
-        return true;
-    } else {
-        return false;
+    for i in bottom_a..top_a + 1 {
+        for j in bottom_b..top_b + 1 {
+            if j == i {
+                return true;
+            }
+        }
     }
+    return false;
 }
